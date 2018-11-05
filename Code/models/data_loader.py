@@ -9,6 +9,7 @@ import os
 import numpy as np
 from scipy import misc
 import torch
+from torch.autograd import Variable
 
 class Dataloader():
     
@@ -69,12 +70,21 @@ class Dataloader():
         label_file = open(params.train_label_file, 'r')
         
         line = label_file.readline()
+        line = label_file.readline()
         while line:
+            
+            ytrain = np.zeros((28))
             line = line.strip()
             line_split = line.split(",") #split each line into image name and labels
             image_name = line_split[0]+ch_filter+".png" # add the filter and .png at the end
             label = line_split[1]
-            label_dict[image_name] = label  #create the dict item for the image
+            trainlabel = label.split(' ')
+            
+            for j in range(len(trainlabel)):
+                
+                index = int(trainlabel[j])
+                ytrain[index]=1
+            label_dict[image_name] = ytrain  #create the dict item for the image
             line = label_file.readline()
 
         label_file.close()
@@ -103,31 +113,36 @@ class Dataloader():
         if shuffle:
             random.seed(230)
             random.shuffle(order)
-            
+        minibatch_size = params.batch_size
+        
+        print( (image_count+1)//minibatch_size, minibatch_size)
         # one pass over data
-        for i in range((image_count+1)//params.batch_size):
+        for i in range((image_count+1)//minibatch_size):
             # "i" denotes batch number
-            batch_image_index = order[i*params.batch_size: (i+1)*params.batch_size]
+            mini_batch_index_start = i*minibatch_size
+            mini_batch_index_end = (i+1)*minibatch_size
+            batch_image_index = order[mini_batch_index_start:mini_batch_index_end ]
             
             # Create arrays for batch data and labels
-            batch_data = np.zeros([params.batch_size, channels, size_X, size_Y])
-            batch_labels = np.zeros([params.batch_size, 4])
+            batch_data = np.zeros([minibatch_size, channels, size_X, size_Y])
+            batch_labels = np.zeros([28, minibatch_size])
             
             # one pass over all the images in the batch
-            for j in batch_image_index:
+            for k in range(minibatch_size):
+                j = batch_image_index[k]
                 image_name = image_dict[j] # get the image file name
                 image_path = os.path.join(params.train_data_path,image_name)
                 img1 = misc.imread(image_path) #convert to a numpy array
                 
-                batch_data[i,0,:,:] = img1
-                batch_labels[i,:] = label_dict[image_name]
+                batch_data[k,0,:,:] = img1
+                batch_labels[:,k] = label_dict[image_name]
             
             # since all data are indices, we convert them to torch LongTensors
             batch_data, batch_labels = torch.LongTensor(batch_data), torch.LongTensor(batch_labels)
             
             # shift tensors to GPU if available
-            if params.cuda:
-                batch_data, batch_labels = batch_data.cuda(), batch_labels.cuda()
+            #if params.cuda:
+                #batch_data, batch_labels = batch_data.cuda(), batch_labels.cuda()
                 
 
             # convert them to Variables to record operations in the computational graph
