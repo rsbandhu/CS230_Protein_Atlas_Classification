@@ -33,6 +33,7 @@ class Dataloader():
             channel filter: blue, green, red
         """
         image_dict = {}
+        img_stat = {}
         image_count = 0
         print(data_type)
         if (data_type == 'train'):
@@ -48,21 +49,30 @@ class Dataloader():
         for i in range(file_count//4):  # there are 4 channels
             id_1 = img_files_sorted[i*4].split("_")[0] # split the file name by id and channel color
             image_dict[id_1] = []
+            img_stat[id_1] = []
+            
             for j in range(4):
+                img_file = img_files_sorted[i*4+j]
+                img_id = img_file.split("_")[0]
+                channel = img_file.split("_")[1]
                 
-                id = img_files_sorted[i*4].split("_")[0]
-                channel = img_files_sorted[i*4].split("_")[1]
-                
-                if (id_1 == id):
-                    for x in ch_filter:
+                if (id_1 == img_id):
+                    for x in ch_filter: # keep only the 3 channels that are in the list "ch_filter"
                         if x in channel:
-                            image_dict[id_1].append(img_files_sorted[i*4+j])
+                            image_dict[id_1].append(img_file)
+                            image_path = os.path.join(params.train_data_path,img_file)
+                            img1 = misc.imread(image_path)  #convert to a numpy array
+                            img_mean = np.mean(img1)
+                            img_std = np.std(img1)
+                            img_stat[img_file] = [img_mean, img_std]                                       
+                                                                  
+                            
                 else:
                     print("image ids not matching")
-        
+            
             
             image_count += 1
-        return image_dict
+        return (image_dict, img_stat)
         
     
     
@@ -102,7 +112,7 @@ class Dataloader():
         return label_dict
         
     
-    def data_iterator(self, params, image_dict, label_dict, shuffle = True):
+    def data_iterator(self, params, image_dict, image_stat, label_dict, shuffle = True):
         """
         Returns a generator that yields batches data with labels. Batch size is params.batch_size. Expires after one
         pass over the data.
@@ -148,13 +158,16 @@ class Dataloader():
                 for m in range(channels):
                     image_name = image_dict[image_id][m] # get the image file name
                     image_path = os.path.join(params.train_data_path,image_name)
-                    img1 = misc.imread(image_path)  #convert to a numpy array
-                
+                    img1 = misc.imread(image_path)  #read image to a numpy array
+                    #retrieve mean and std
+                    img_mean = image_stat[image_name][0]
+                    img_std = image_stat[image_name][1]
+                    #normalize the image to zero mean and std = 1
+                    img1 = (img1-img_mean)/img_std
+                    
                     batch_data[k,m,:,:] = torch.tensor(img1, dtype = torch.float32)
                 batch_labels[:,k] = torch.tensor(label_dict[image_id] , dtype = torch.float32)
             
-            # since all data are indices, we convert them to torch LongTensors
-            #batch_data, batch_labels = torch.HalfTensor(batch_data), torch.ShortTensor(batch_labels)
             
             # shift tensors to GPU if available
             #if params.cuda:
