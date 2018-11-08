@@ -10,6 +10,7 @@ import numpy as np
 from scipy import misc
 import torch
 from torch.autograd import Variable
+from PIL import Image
 
 class Dataloader():
     
@@ -50,7 +51,7 @@ class Dataloader():
             id_1 = img_files_sorted[i*4].split("_")[0] # split the file name by id and channel color
             image_dict[id_1] = []
             img_stat[id_1] = []
-            
+            print(i)
             for j in range(4):
                 img_file = img_files_sorted[i*4+j]
                 img_id = img_file.split("_")[0]
@@ -62,9 +63,9 @@ class Dataloader():
                             image_dict[id_1].append(img_file)
                             image_path = os.path.join(params.train_data_path,img_file)
                             img1 = misc.imread(image_path)  #convert to a numpy array
-                            img_mean = np.mean(img1)
-                            img_std = np.std(img1)
-                            img_stat[img_file] = [img_mean, img_std]                                       
+                            #img_mean = np.mean(img1)
+                            #img_std = np.std(img1)
+                            #img_stat[img_file] = [img_mean, img_std]                                       
                                                                   
                             
                 else:
@@ -158,14 +159,21 @@ class Dataloader():
                 for m in range(channels):
                     image_name = image_dict[image_id][m] # get the image file name
                     image_path = os.path.join(params.train_data_path,image_name)
-                    img1 = misc.imread(image_path)  #read image to a numpy array
-                    #retrieve mean and std
-                    img_mean = image_stat[image_name][0]
-                    img_std = image_stat[image_name][1]
-                    #normalize the image to zero mean and std = 1
-                    img1 = (img1-img_mean)/img_std
                     
-                    batch_data[k,m,:,:] = torch.tensor(img1, dtype = torch.float32)
+                    #img1 = misc.imread(image_path)  #read image to a numpy array
+                    
+                    img1 = Image.open(image_path) #read image using PIl.Image
+                    transform = image_transform("train")
+                    img_tansformed = transform(img1)
+                    #retrieve mean and std
+                    img_mean = torch.mean(img_tansformed)
+                    img_std = torch.std(img_tansformed)
+                    #normalize the image to zero mean and std = 1
+                    img_normalized = (img_tansformed-img_mean)/img_std
+
+                    image_data[0,m,:,:] = img_normalized
+                    
+                    batch_data[k,m,:,:] = img_normalized
                 batch_labels[:,k] = torch.tensor(label_dict[image_id] , dtype = torch.float32)
             
             
@@ -178,3 +186,57 @@ class Dataloader():
             batch_data, batch_labels = Variable(batch_data), Variable(batch_labels)
     
             yield batch_data, batch_labels
+        
+    def image_transform(self, data_type):
+        if (data_type == 'train'):
+            transform = transforms.compose([transforms.RandomResizedCrop(224),
+                                            transforms.ToTensor()])
+        else:
+            transform = transforms.compose([transforms.RandomResizedCrop(224),
+                                            transforms.ToTensor()])
+        return transform
+        
+    def load_single_image(self, data_type, params, ch_filter = ["red", "blue", "green"]):
+        if (data_type == 'train'):
+            current_path = params.train_data_path
+            print("datatype is train")
+        elif data_type == 'test':
+            current_path = params.test_data_path
+        
+        img_files = os.listdir(current_path)
+        file_count = len(img_files)
+        img_files_sorted = sorted(img_files)  # sort the file list by name
+        
+        img_num = np.random.randint(0,file_count)
+        img_file = img_files_sorted[img_num]
+        
+        img_id = img_file.split("_")[0]
+        
+        img_channels = []
+        image_data = torch.zeros([1, 3, 512, 512], dtype=torch.float32)
+        
+        ch_id = 0 
+        for chn in ch_filter:
+            file_name = img_id+"_"+chn+".png"
+            img_channels.append(file_name)
+            image_path = os.path.join(params.train_data_path,file_name)   
+            #img1 = misc.imread(image_path)  #read image to a numpy array
+            img1 = Image.open(image_path)
+            
+            transform = image_transform("train")
+            img_tansformed = transform(img1)
+            #retrieve mean and std
+            img_mean = torch.mean(img_tansformed)
+            img_std = torch.std(img_tansformed)
+            #normalize the image to zero mean and std = 1
+            img_normalized = (img_tansformed-img_mean)/img_std
+                
+            image_data[0,ch_id,:,:] = img_normalized
+            
+            ch_id += 1
+            
+        return image_data
+        
+        
+        
+        
