@@ -10,6 +10,7 @@ import numpy as np
 from scipy import misc
 import torch
 from torch.autograd import Variable
+from torchvision import transforms
 from PIL import Image
 
 class Dataloader():
@@ -189,11 +190,9 @@ class Dataloader():
         
     def image_transform(self, data_type):
         if (data_type == 'train'):
-            transform = transforms.compose([transforms.RandomResizedCrop(224),
-                                            transforms.ToTensor()])
+            transform = transforms.Compose([transforms.RandomResizedCrop(224),transforms.ToTensor()])
         else:
-            transform = transforms.compose([transforms.RandomResizedCrop(224),
-                                            transforms.ToTensor()])
+            transform = transforms.Compose([transforms.RandomResizedCrop(224),transforms.ToTensor()])
         return transform
         
     def load_single_image(self, data_type, params, ch_filter = ["red", "blue", "green"]):
@@ -213,7 +212,7 @@ class Dataloader():
         img_id = img_file.split("_")[0]
         
         img_channels = []
-        image_data = torch.zeros([1, 3, 512, 512], dtype=torch.float32)
+        image_data = torch.zeros([1, 3, 224, 224], dtype=torch.float32)
         
         ch_id = 0 
         for chn in ch_filter:
@@ -223,7 +222,7 @@ class Dataloader():
             #img1 = misc.imread(image_path)  #read image to a numpy array
             img1 = Image.open(image_path)
             
-            transform = image_transform("train")
+            transform = self.image_transform("train")
             img_tansformed = transform(img1)
             #retrieve mean and std
             img_mean = torch.mean(img_tansformed)
