@@ -51,8 +51,8 @@ class Dataloader():
         for i in range(file_count//4):  # there are 4 channels
             id_1 = img_files_sorted[i*4].split("_")[0] # split the file name by id and channel color
             image_dict[id_1] = []
-            img_stat[id_1] = []
-            print(i)
+            #img_stat[id_1] = []
+        
             for j in range(4):
                 img_file = img_files_sorted[i*4+j]
                 img_id = img_file.split("_")[0]
@@ -62,19 +62,18 @@ class Dataloader():
                     for x in ch_filter: # keep only the 3 channels that are in the list "ch_filter"
                         if x in channel:
                             image_dict[id_1].append(img_file)
-                            image_path = os.path.join(params.train_data_path,img_file)
-                            img1 = misc.imread(image_path)  #convert to a numpy array
+                            #image_path = os.path.join(params.train_data_path,img_file)
+                            #img1 = misc.imread(image_path)  #convert to a numpy array
                             #img_mean = np.mean(img1)
                             #img_std = np.std(img1)
-                            #img_stat[img_file] = [img_mean, img_std]                                       
-                                                                  
-                            
+                            #img_stat[img_file] = [img_mean, img_std]                                             
                 else:
                     print("image ids not matching")
             
             
             image_count += 1
-        return (image_dict, img_stat)
+        print("image id count = ", image_count)
+        return image_dict
         
     
     
@@ -193,9 +192,16 @@ class Dataloader():
             transform = transforms.Compose([transforms.RandomResizedCrop(224),transforms.ToTensor()])
         else:
             transform = transforms.Compose([transforms.RandomResizedCrop(224),transforms.ToTensor()])
+        
         return transform
         
-    def load_single_image(self, data_type, params, ch_filter = ["red", "blue", "green"]):
+    def get_random_image_id(self, data_type, params):
+        '''
+        get the image id of a random image from the image_type specified
+        Inputs:
+        imgae type: train or test
+        
+        '''
         if (data_type == 'train'):
             current_path = params.train_data_path
             print("datatype is train")
@@ -210,6 +216,14 @@ class Dataloader():
         img_file = img_files_sorted[img_num]
         
         img_id = img_file.split("_")[0]
+        
+        return img_id
+    
+    def load_single_image(self, data_type, params, img_id, ch_filter = ["red", "blue", "green"]):
+        if (data_type == 'train'):
+            current_path = params.train_data_path
+        elif data_type == 'test':
+            current_path = params.test_data_path
         
         img_channels = []
         image_data = torch.zeros([1, 3, 224, 224], dtype=torch.float32)
