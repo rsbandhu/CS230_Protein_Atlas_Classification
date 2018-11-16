@@ -1,0 +1,12 @@
+{
+    "train_data_path": "C:\\Users\\rsbandhu\\Documents\\MUSTBACKUP\\Details\\Computers\\DeepLearning_Stanford_CS230\\Project\\all\\train",
+	"test_data_path": "C:\\Users\\rsbandhu\\Documents\\MUSTBACKUP\\Details\\Computers\\DeepLearning_Stanford_CS230\\Project\\all\\test",
+	"train_label_file": "C:\\Users\\rsbandhu\\Documents\\MUSTBACKUP\\Details\\Computers\\DeepLearning_Stanford_CS230\\Project\\all\\train.csv",
+	"channels":3,
+	"im_size_X":224,
+	"im_size_Y":224,
+	"learning_rate": 1e-4,
+    "batch_size": 16,
+    "num_epochs": 5,
+    "save_summary_steps": 100
+}
