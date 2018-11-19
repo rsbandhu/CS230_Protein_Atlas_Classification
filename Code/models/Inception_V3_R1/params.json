@@ -1,0 +1,13 @@
+{
+    "train_data_path": "/home/bony/Deep_Learning_Stanford_CS230/Project/Data/train_224",
+	"test_data_path": "/home/bony/Deep_Learning_Stanford_CS230/Project/Data/test",
+	"train_label_file": "/home/bony/Deep_Learning_Stanford_CS230/Project/Data/train.csv",
+	"channels":3,
+	"im_size_X":299,
+	"im_size_Y":299,
+	"features_in":2048,
+	"learning_rate": 1e-4,
+    "batch_size": 16,
+    "num_epochs": 100,
+    "save_summary_steps": 10
+}
