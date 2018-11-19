@@ -16,19 +16,21 @@ class Params():
     params.learning_rate = 0.5  # change the value of learning_rate in params
     ```
     """
-        with open(json_path, 'w') as f:
-            json.dump(self.__dict__, f, indent=4)
+    
+    def __init__(self, json_path):
+        with open(json_path) as f:
+            params = json.load(f)
+            self.__dict__.update(params)  
 
+    def save(self, json_path):
+        with open(json_path, 'w') as f:
+            json.dump(self.__dict__, f, indent =4) 
+            
     def update(self, json_path):
         """Loads parameters from json file"""
         with open(json_path) as f:
             params = json.load(f)
-            self.__dict__.update(pa
-
-    def __init__(self, json_path):
-        with open(json_path) as f:
-            params = json.load(f)
-            self.__dict__.updarams)
+            self.__dict__.update(params)
 
     @property
     def dict(self):
@@ -132,3 +134,4 @@ def load_checkpoint(checkpoint, model, optimizer=None):
         optimizer.load_state_dict(checkpoint['optim_dict'])
 
     return checkpoint
+

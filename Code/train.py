@@ -3,20 +3,21 @@ import logging
 import argparse
 import os
 import torch
+import torch.nn as nn
 import torch.optim as optim
 from torch.autograd import Variable
 from tqdm import tqdm
 import utils
-from evaluate import evaluate
 
 # THISneeds modification
-import models.net as net
-from models.data_loader import Dataloader  # THISneeds modification
-from evaluate import evaluate
+import models.Inception_V3_finetune.net as net
+from models.Inception_V3_finetune import data_loader
+from evaluate import EvaluateMetrics
+from models.Inception_V3_finetune import inception
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--model_dir', default='models/',help="Directory of the params.json file under models dir")
-parser.add_argument('--data_dir', default='data/64x64_SIGNS', help="Directory containing the dataset")
+parser.add_argument('--model_dir', default='models/Inception_V3_finetune',help="Directory of the params.json file under models dir")
+parser.add_argument('--data_dir', default='data/train_299', help="Directory containing the dataset")
 '''
 parser.add_argument('--restore_file', default=None,
                     help="Optional, name of the file in --model_dir containing weights to reload before \
@@ -43,11 +44,11 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params, cuda_present):
     loss_avg = utils.RunningAverage()
     # for i, (train_batch, labels_batch) in enumerate(dataloader):
     
+    num_batches =2
+    
     for batch in range(num_batches):
-        train_batch, labels_batch = next(data_iterator) 
-       
-       #Move batch data and labels to GPU if available
-       if cuda_present:
+        train_batch, labels_batch = next(dataloader)
+        if cuda_present:
            train_batch = train_batch.cuda(async=True)
            labels_batch = labels_batch.cuda(async=True)
            
@@ -55,7 +56,7 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params, cuda_present):
         train_batch, labels_batch = Variable(train_batch), Variable(labels_batch)
         # compute model output and loss
         output_batch = model(train_batch)
-        loss = loss_fn(output_batch, labels_batch)
+        loss = sum((loss_fn(out_batch, labels_batch)) for out_batch in output_batch)
         
         
         # clear previous gradients, compute gradients of all variables wrt loss
@@ -85,7 +86,7 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params, cuda_present):
     metrics_string = " ; ".join("{}: {:05.3f}".format(k, v) for k, v in metrics_mean.items())
     logging.info("- Train metrics: " + metrics_string)
             
-def train_and_evaluate(params, train_dataloader, val_dataloader, optimizer, loss_fn, metrics, params, model_dir, cuda_present):
+def train_and_evaluate(params, train_dataloader, optimizer, loss_fn, metrics, model_dir, cuda_present):
     """Train the model and evaluate every epoch.
     Args:
         model: (torch.nn.Module) the neural network
@@ -98,10 +99,7 @@ def train_and_evaluate(params, train_dataloader, val_dataloader, optimizer, loss
         model_dir: (string) directory containing config, weights and log
         restore_file: (string) optional- name of file to restore from (without its extension .pth.tar)
     """
-    
-    
-    image_count = len(image_dict)
-    num_batches = (image_count +1) // params.batch_size
+
     for epoch in range(params.num_epochs):
         
         '''Do the following for every epoch'''
@@ -146,7 +144,9 @@ def train_and_evaluate(params, train_dataloader, val_dataloader, optimizer, loss
         
         
 if __name__ == "__main__":
+    print('first line in main')
     args = parser.parse_args()
+    model_dir = args.model_dir
     json_path = os.path.join(args.model_dir, 'params.json')
     
     print(json_path)
@@ -156,38 +156,52 @@ if __name__ == "__main__":
     # Set the logger
     utils.set_logger(os.path.join(args.model_dir, 'train.log'))
     
-    '''
-    #Old method of dataloading
-    data_loader = Dataloader(params)
-    image_dict = data_loader.load_data("train", params)
-    labels_dict = data_loader.load_labels("train", params)
-    '''
     
-    ''' get the train and val dataloaders'''
+    #Old method of dataloading
+    dataloader = data_loader.Dataloader(params)
+    image_dict = dataloader.load_data("train", params)
+    labels_dict = dataloader.load_labels("train", params)
+
+    data_generator = dataloader.data_iterator(params, image_dict, labels_dict)
+    
+    
+    #get the train and val dataloaders
     
     logging.info("Loading the datasets ")
+    
+    '''
     dataloaders = Dataloader(['train', 'val'], args.data_dir, params)
     train_dl = Dataloader['train']
     val_dl = Dataloader['val']
+    '''
     
     logging.info("Done loading the Dataloader")
     
     # use GPU if available
     cuda_present = torch.cuda.is_available() #Boolean
     
+    #cuda_present = False
+    
     # Specify the model and the Optimizer 
+    inceptionV3 = inception.inception_v3() # load model from local repo
+    pretrained_wts = os.path.join(model_dir, 'inception_v3_google-1a9a5a14.pth')
+    inceptionV3.load_state_dict(torch.load(pretrained_wts))
+    
+    for param in inceptionV3.parameters():
+        param.requires_grad = True
+    
     if cuda_present:
-        model = net.Net(params).cuda()
+        model = inceptionV3.cuda()
     else:
-        model = net.Net(params) 
-    optimizer = optim.Adam(model.parameters(), lr = pramas.learning_rate)
+        model = inceptionV3 
+    optimizer = optim.Adam(model.parameters(), lr = params.learning_rate)
     
     #get the Loss function and metrics from net.py
-    loss_fn = net.loss_fn
+    loss_fn = nn.BCELoss()
     metrics = net.metrics
     
     # Train and Evaluate the model
     logging.info("Starting training for {} epoch(s)".format(params.num_epochs))
     #train_and_evaluate(params, image_dict, labels_dict)
-    train_and_evaluate(params, train_dl, val_dl, optimizer, loss_fn, metrics, params, model_dir, cuda_present)
+    train_and_evaluate(params, data_generator, optimizer, loss_fn, metrics, model_dir, cuda_present)
 	
