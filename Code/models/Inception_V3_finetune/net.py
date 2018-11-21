@@ -7,6 +7,8 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import sklearn
+from sklearn.metrics import accuracy_score, hamming_loss, precision_score, recall_score, f1_score
 
 
 class Net(nn.Module):
@@ -53,7 +55,7 @@ class Net(nn.Module):
         return output
 
 
-def loss_fn(outputs, labels):
+def loss_fn(outputs, labels, wts):
     """
     Compute the cross entropy loss given outputs from the model and labels for all tokens. Exclude loss terms
     for PADding tokens.
@@ -68,13 +70,14 @@ def loss_fn(outputs, labels):
     """
 
     # reshape labels to give a flat vector of length batch_size*seq_len
-    loss = nn.BCELoss()
+    loss_noreduce = nn.BCEWithLogitsLoss(reduce=False)
+    loss = torch.mean(loss_noreduce(outputs, labels)*wts)
 	
     # compute cross entropy loss for all tokens
     return loss
     
     
-def accuracy(outputs, labels):
+def metrics(outputs, labels, threshold):
     """
     Compute the accuracy, given the outputs and labels for all tokens. Exclude PADding terms.
     Args:
@@ -84,21 +87,27 @@ def accuracy(outputs, labels):
     Returns: (float) accuracy in [0,1]
     """
 
-    # reshape labels to give a flat vector of length batch_size*seq_len
-    labels = labels.ravel()
-
-    # since PADding tokens have label -1, we can generate a mask to exclude the loss from those terms
-    mask = (labels >= 0)
-
-    # np.argmax gives us the class predicted for each token by the model
-    outputs = np.argmax(outputs, axis=1)
-
+    #convert the torch tensors to numpy
+    y_pred = outputs.numpy()
+    y_true = labels.numpy()
+    
+    #Predict 0/1 for each class based on threshold
+    y_pred[y_pred > threshold] = 1
+    y_pred[y_pred <= threshold] = 0
+    
+    #Calculate various metrics, for multilabel, multiclass problem
+    accuracy = accuracy_score(y_true, y_pred)
+    Hloss = hamming_loss(y_true, y_pred)
+    precision = precision_score(y_true, y_pred, average = 'macro')
+    recall = recall_score(y_true, y_pred, average = 'macro')
+    F1_score = f1_score(y_true, y_pred, average = 'macro')
+    
+    macro_score = {'accuracy': accuracy, 'Hloss': Hloss, 'precision': precision, 'recall':recall, 'F1_score':F1_score }
+    
     # compare outputs with labels and divide by number of tokens (excluding PADding tokens)
-    return np.sum(outputs==labels)/float(np.sum(mask))
+    return macro_score
 
 
 # maintain all metrics required in this dictionary- these are used in the training and evaluation loops
-metrics = {
-    'accuracy': accuracy,
+#metrics = {'accuracy': accuracy[0]}
     # could add more metrics such as accuracy for each token type
-}
