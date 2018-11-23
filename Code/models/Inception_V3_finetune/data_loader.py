@@ -12,6 +12,7 @@ import torch
 from torch.autograd import Variable
 from torchvision import transforms
 from PIL import Image
+import time
 
 class Dataloader():
     
@@ -164,23 +165,27 @@ class Dataloader():
         order = list(image_dict.keys())
         #Shuffle the order of the images if needed
         if shuffle:
-            np.random.seed(230)
+            np.random.seed(int(time.time()))
             np.random.shuffle(order)
         minibatch_size = params.batch_size
         
         print( image_count, (image_count+1)//minibatch_size, minibatch_size)
         # one pass over data
-        for i in range((image_count+1)//minibatch_size):
+        for i in range((image_count-1)//minibatch_size+1):
             # "i" denotes batch number
             mini_batch_index_start = i*minibatch_size
-            mini_batch_index_end = (i+1)*minibatch_size
+            if (i < (image_count//minibatch_size)):
+                mini_batch_index_end = (i+1)*minibatch_size
+            else:
+                mini_batch_index_end = image_count # the last batch might be less than minibatch_size
+                minibatch_size = mini_batch_index_end - mini_batch_index_start
             batch_image_index = order[mini_batch_index_start:mini_batch_index_end ]
             
             # Create initial arrays of zeros for batch data and labels
             batch_data = torch.zeros([minibatch_size, channels, size_X, size_Y], dtype=torch.float32)
             batch_labels = torch.zeros([minibatch_size, 28], dtype=torch.float32)
             
-            print("mini batch index = ", i)
+            #print("mini batch index = ", i)
             # one pass over all the images in the mini batch
             for k in range(minibatch_size):
                 #j = batch_image_index[k]

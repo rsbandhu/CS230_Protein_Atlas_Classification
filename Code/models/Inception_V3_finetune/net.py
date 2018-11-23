@@ -9,7 +9,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 import sklearn
 from sklearn.metrics import accuracy_score, hamming_loss, precision_score, recall_score, f1_score
-
+from models.Inception_V3_finetune import inception
+import os
 
 class Net(nn.Module):
     """
@@ -53,6 +54,26 @@ class Net(nn.Module):
         output = F.sigmoid(fc3_out)                      # output size = batch_size x 28
 
         return output
+
+def myInceptionV3(model_dir, num_classes):
+                                    
+    inceptionV3 = inception.inception_v3() # load model from local repo
+
+    pretrained_wts = os.path.join(model_dir, 'inception_v3_google-1a9a5a14.pth')
+    inceptionV3.load_state_dict(torch.load(pretrained_wts))
+
+    print('done loading weights')
+    # Change the number of output classes from 1000 to 28
+
+    #First for the auxlogit out
+    aux_logit_in_ftrs = inceptionV3.AuxLogits.fc.in_features
+    inceptionV3.AuxLogits.fc =nn.Linear(aux_logit_in_ftrs, num_classes)
+
+    #Handle the primary FC layers
+    num_ftrs = inceptionV3.fc.in_features
+    inceptionV3.fc = nn.Linear(num_ftrs, num_classes)
+    
+    return inceptionV3
 
 
 def loss_fn(outputs, labels, wts):
