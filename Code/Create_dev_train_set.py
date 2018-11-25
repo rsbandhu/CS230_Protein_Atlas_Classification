@@ -208,69 +208,6 @@ def Create_img_files_path(imgid_list, home_dir, channels =["_red", "_blue", "_gr
         
 
 
-# In[18]:
-
-
-data_dir_root = '/home/bony/Deep_Learning_Stanford_CS230/Project/Data'
-original_train_filesdir = os.path.join(data_dir_root, 'train_224')
-new_train_filesdir = os.path.join(data_dir_root, 'train_224_new')
-new_dev_filesdir = os.path.join(data_dir_root, 'dev_224_new')
-labels_file_path = '/home/bony/Deep_Learning_Stanford_CS230/Project/Data/train.csv'
-
-np.random.seed(230)
-
-(single_label_img, multi_label_img, imgid_dict_all) = load_labels(labels_file_path)
-
-img_list = list(single_label_img.keys())
-print("Classes that have unique labels in some image:  ", img_list)
-for i in range(28):
-    label =str(i)
-    if label not in img_list:
-        print(label, "This class doesn't appear as a unique label in any image")
-        
-#create dev image set with single labels
-dev_image_set_1label = create_dev_set_single_labels(single_label_img, 0.05)
-print("dev set images with single labels = ", len(dev_image_set_1label))
-#create dev image set with multiple labels
-multilabel_dev_img_list = create_dev_set_multiple_labels(multi_label_img, 0.05)
-print("dev set images with multiple labels = ",len(multilabel_dev_img_list))
-#create full dev image set
-dev_imgid_list = dev_image_set_1label + multilabel_dev_img_list
-dev_imgid_list = set(dev_imgid_list) #remove duplicate items
-print("Number of dev set images = ", len(dev_imgid_list))
-
-#create new full train image set
-train_imgid_list = Create_new_train_set(dev_imgid_list, imgid_dict_all)
-print("Number of train images = ", len(train_imgid_list))
-
-#Create full path names for new  and dev images    
-dev_file_pathname_list = Create_img_files_path(dev_imgid_list, original_train_filesdir)
-train_file_pathname_list = Create_img_files_path(train_imgid_list, original_train_filesdir)
-
-#write new dev and train images to the new directory
-if not os.path.exists(new_dev_filesdir):
-    print("Dev image files Directory does not exist! Making directory {}".format(new_dev_filesdir))
-    os.mkdir(new_dev_filesdir)
-    print("Copying files to new dev directory")
-    for file_path in dev_file_pathname_list:
-        shutil.copy2(file_path, new_dev_filesdir) # target filename is /dst/dir/file.ext
-    print("done copying dev files")
-else:
-    print("Dev image files Directory exists! ")
-    
-    
-if not os.path.exists(new_train_filesdir):
-    print("Dev image files Directory does not exist! Making directory {}".format(new_train_filesdir))
-    os.mkdir(new_train_filesdir)
-    print("Copying files to new train directory")
-    for file_path in train_file_pathname_list:
-        shutil.copy2(file_path, new_train_filesdir) # target filename is /dst/dir/file.ext
-    print("done copying train files")
-else:
-    print("Train image files Directory exists! ")
-
-
-
 # In[ ]:
 
 
