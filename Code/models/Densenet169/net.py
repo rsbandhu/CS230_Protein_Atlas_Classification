@@ -7,6 +7,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import torchvision
 import sklearn
 from sklearn.metrics import accuracy_score, hamming_loss, precision_score, recall_score, f1_score
 from models.Densenet169 import densenet
@@ -57,19 +58,35 @@ class Net(nn.Module):
 
 def myDensenet169(model_dir, num_classes):
                                     
-    densenet169 = densenet.densenet169() # load model from local repo
-
-    pretrained_wts = os.path.join(model_dir, 'densenet169-b2777c0a.pth')
-    densenet169.load_state_dict(torch.load(pretrained_wts))
+    densenet169 = torchvision.models.densenet169(pretrained=True)
+    #densenet169 = densenet.densenet169() # load model from local repo
+    #pretrained_wts = os.path.join(model_dir, 'densenet169-b2777c0a.pth')
+    #densenet169.load_state_dict(torch.load(pretrained_wts))
 
     print('done loading weights')
     # Change the number of output classes from 1000 to 28
 
     #Handle the primary FC layers
     num_ftrs = densenet169.classifier.in_features
-    densenet169.fc = nn.Linear(num_ftrs, num_classes)
+    densenet169.classifier = nn.Linear(num_ftrs, num_classes)
     
     return densenet169
+
+def myDensenet161(model_dir, num_classes):
+                                    
+    densenet161 = torchvision.models.densenet161(pretrained=True)
+    #densenet169 = densenet.densenet169() # load model from local repo
+    #pretrained_wts = os.path.join(model_dir, 'densenet169-b2777c0a.pth')
+    #densenet169.load_state_dict(torch.load(pretrained_wts))
+
+    print('done loading weights')
+    # Change the number of output classes from 1000 to 28
+
+    #Handle the primary FC layers
+    num_ftrs = densenet161.classifier.in_features
+    densenet161.classifier = nn.Linear(num_ftrs, num_classes)
+    
+    return densenet161
 
 
 def loss_fn(outputs, labels, wts):
