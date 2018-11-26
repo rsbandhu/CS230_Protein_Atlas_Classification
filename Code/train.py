@@ -2,23 +2,29 @@ import numpy as np
 import logging
 import argparse
 import os
+import time
+
 import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.autograd import Variable
-from tqdm import tqdm
 import utils
 
-# THISneeds modification
-import models.Inception_V3_finetune.net as net
-from models.Inception_V3_finetune import data_loader
+#Inception_V3_finetune
+#Densenet169
+
+# Change the following 4 lines for new models
+import models.Densenet169.net as net 
+from models.Densenet169 import data_loader
 from evaluate import EvaluateMetrics
-from models.Inception_V3_finetune import inception
+from models.Densenet169 import densenet
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--model_dir', default='models/Inception_V3_finetune',help="Directory of the params.json file under models dir")
-parser.add_argument('--data_dir', default='data/train299_test', help="Directory containing the dataset")
+# Change the following 1 lines for new models
+parser.add_argument('--model_dir', default='models/Densenet169',help="Directory of the params.json file under models dir")
 '''
+parser.add_argument('--data_dir', default='data/train299_test', help="Directory containing the dataset")
+
 parser.add_argument('--restore_file', default=None,
                     help="Optional, name of the file in --model_dir containing weights to reload before \
                     training")  # 'best' or 'train'
@@ -53,58 +59,58 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params, img_count, cud
         loss_class_wts = loss_class_wts.cuda()
     k= 0
     
-    for _ in tqdm(range(img_count//params.batch_size)):
     
-        for i, (train_batch, labels_batch) in enumerate(dataloader):
+    
+    for i, (train_batch, labels_batch) in enumerate(dataloader):
 
-            batch_size = labels_batch.size()[0] 
-            y_true[k:k+ batch_size, :] = labels_batch #build entire array of predicted labels
+        batch_size = labels_batch.size()[0] 
+        y_true[k:k+ batch_size, :] = labels_batch #build entire array of predicted labels
 
-            #If CUDA available, move data to GPU
-            if cuda_present:
-               train_batch = train_batch.cuda(async=True)
-               labels_batch = labels_batch.cuda(async=True)
+        #If CUDA available, move data to GPU
+        if cuda_present:
+           train_batch = train_batch.cuda(async=True)
+           labels_batch = labels_batch.cuda(async=True)
 
-            # convert to torch Variables
-            train_batch, labels_batch = Variable(train_batch), Variable(labels_batch)
+        # convert to torch Variables
+        train_batch, labels_batch = Variable(train_batch), Variable(labels_batch)
 
-            # compute model output and loss
-            prim_out, aux_out = model(train_batch)
+        # compute model output and loss
+        prim_out, aux_out = model(train_batch)
 
-            #Compute primary, Aux and total weighted loss
-            loss_prim =loss_fn(prim_out, labels_batch,loss_class_wts)
-            loss_aux =loss_fn(aux_out, labels_batch, loss_class_wts)
-            loss = loss_prim + 0.2 * loss_aux
+        #Compute primary, Aux and total weighted loss
+        loss_prim =loss_fn(prim_out, labels_batch,loss_class_wts)
+        loss_aux =loss_fn(aux_out, labels_batch, loss_class_wts)
+        loss = loss_prim + 0.2 * loss_aux
 
-            #send the primary output after thresholding for metrics calc
-            yp = ((prim_out > threshold).int()*1).cpu()
-            y_pred[k:k+ batch_size, :] = yp #build entire array of predicted labels
-            k += batch_size
+        #send the primary output after thresholding for metrics calc
+        yp = ((prim_out > threshold).int()*1).cpu()
+        y_pred[k:k+ batch_size, :] = yp #build entire array of predicted labels
+        k += batch_size
 
-            # clear previous gradients, compute gradients of all variables wrt loss
-            optimizer.zero_grad()
-            loss.backward()
+        # clear previous gradients, compute gradients of all variables wrt loss
+        optimizer.zero_grad()
+        loss.backward()
 
-            # performs updates using calculated gradients
-            optimizer.step()
+        # performs updates using calculated gradients
+        optimizer.step()
 
-            # Evaluate metrics only once in a while
-            if i % params.save_summary_steps == 0:
-                # extract data from torch Variable, move to cpu, convert to numpy arrays
-                prim_out = prim_out.data.cpu()
-                labels_batch = labels_batch.data.cpu()
+        # Evaluate metrics only once in a while
+        if i % params.save_summary_steps == 0:
+            # extract data from torch Variable, move to cpu, convert to numpy arrays
+            prim_out = prim_out.data.cpu()
+            labels_batch = labels_batch.data.cpu()
 
-                # compute all metrics on this batch
-                summary_batch = metrics(prim_out, labels_batch, 0.5)
+            # compute all metrics on this batch
+            summary_batch = metrics(prim_out, labels_batch, 0.5)
 
-                summary_batch['loss'] = loss.item()
-                epoch_metric_summ.append(summary_batch)
+            summary_batch['loss'] = loss.item()
+            epoch_metric_summ.append(summary_batch)
 
-                metrics_string = " ; ".join("{}: {:05.3f}".format(k, v) for k, v in summary_batch.items())
-                logging.info("Batch: {} : - Train metrics: ".format(i) + metrics_string)
+            metrics_string = " ; ".join("{}: {:05.3f}".format(k, v) for k, v in summary_batch.items())
+            logging.info("Batch: {} : - Train metrics: ".format(i) + metrics_string)
 
-            # update the average loss
-            loss_avg.update(loss.item())
+        # update the average loss
+        loss_avg.update(loss.item())
         
     #Calculate the metrics of the entire training dataset
     epoch_metrics = metrics(y_pred, y_true, threshold)
@@ -134,6 +140,7 @@ def train_and_evaluate(params, train_dataloader, optimizer, loss_fn, metrics, mo
 
     for epoch in range(params.num_epochs):
         
+        t0 = time.time()
         '''Do the following for every epoch'''
         # Run one epoch
         logging.info("Epoch {}/{}".format(epoch + 1, params.num_epochs))
@@ -152,15 +159,24 @@ def train_and_evaluate(params, train_dataloader, optimizer, loss_fn, metrics, mo
         
         #val_acc = val_metrics['accuracy']
         #is_best = val_acc>=best_val_acc
-    is_best = True
+        is_best = False
         
-   # Save weights
+       # Save weights every 3rd epoch
+        if ((epoch+1) % 3 == 0):
+            utils.save_checkpoint({'epoch': epoch + 1,
+                                   'state_dict': model.state_dict(),
+                                   'optim_dict' : optimizer.state_dict()},
+                                   is_best=is_best,
+                                   checkpoint=model_dir)
+        t1 = time.time()
+        logging.info("Time taken for this epoch = {}".format(t1-t0))
+        
+    # Save weights in the end
     utils.save_checkpoint({'epoch': epoch + 1,
-                           'state_dict': model.state_dict(),
-                           'optim_dict' : optimizer.state_dict()},
-                           is_best=is_best,
-                           checkpoint=model_dir)
-    
+                               'state_dict': model.state_dict(),
+                               'optim_dict' : optimizer.state_dict()},
+                               is_best=is_best,
+                               checkpoint=model_dir)
 if __name__ == "__main__":
     print('first line in main')
     args = parser.parse_args()
@@ -191,13 +207,15 @@ if __name__ == "__main__":
         logging.info("cuda not available, using CPU")
     
     logging.info("Loading model and weights")
-    inceptionV3 = net.myInceptionV3(model_dir, 28)
+    
+    # Change the following 1 lines for new models
+    model = net.myDensenet169(model_dir, params.class_count)
 
     logging.info("Transferring model to GPU if CUDA available")
-    for param in inceptionV3.parameters():
+    for param in model.parameters():
         param.requires_grad = True
     if cuda_present:
-        model = inceptionV3.cuda()
+        model = model.cuda()
     else:
         model = inceptionV3 
         
