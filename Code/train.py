@@ -97,11 +97,11 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params, img_count, cud
         # Evaluate metrics only once in a while
         if i % params.save_summary_steps == 0:
             # extract data from torch Variable, move to cpu, convert to numpy arrays
-            prim_out = prim_out.data.cpu()
+            #prim_out = prim_out.data.cpu()
             labels_batch = labels_batch.data.cpu()
 
             # compute all metrics on this batch
-            summary_batch = metrics(prim_out, labels_batch, 0.5)
+            summary_batch = metrics(yp, labels_batch, threshold)
 
             summary_batch['loss'] = loss.item()
             epoch_metric_summ.append(summary_batch)
