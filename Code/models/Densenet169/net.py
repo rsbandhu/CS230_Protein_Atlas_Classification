@@ -126,8 +126,8 @@ def metrics(outputs, labels, threshold):
     y_true = labels.numpy()
     
     #Predict 0/1 for each class based on threshold
-    y_pred[y_pred > threshold] = 1
-    y_pred[y_pred <= threshold] = 0
+    #y_pred[y_pred > threshold] = 1
+    #y_pred[y_pred <= threshold] = 0
     
     #Calculate various metrics, for multilabel, multiclass problem
     accuracy = accuracy_score(y_true, y_pred)
