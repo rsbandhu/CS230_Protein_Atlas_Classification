@@ -1,0 +1,220 @@
+2018-11-27 07:06:32,569:INFO: json path : /home/ec2-user/CS230_Project/Code/models/Densenet169/params.json
+2018-11-27 07:06:32,569:INFO: Generating the dataloader
+2018-11-27 07:06:32,569:INFO: Done loading the Dataloader
+2018-11-27 07:06:32,598:INFO: using CUDA
+2018-11-27 07:06:32,598:INFO: Loading model and weights
+2018-11-27 07:06:33,468:INFO: Transferring model to GPU if CUDA available
+2018-11-27 07:06:36,888:INFO: Starting training for 20 epoch(s)
+2018-11-27 07:06:36,888:INFO: Epoch 1/20 , threshold: 0.3
+2018-11-27 07:06:37,828:INFO: Batch: 0 : - Train metrics: accuracy: 0.0000 ; Hloss: 0.2165 ; precision: 0.0474 ; recall: 0.1773 ; F1_score: 0.0662 ; loss: 0.2908
+2018-11-27 07:08:00,275:INFO: Batch: 200 : - Train metrics: accuracy: 0.1562 ; Hloss: 0.0458 ; precision: 0.0893 ; recall: 0.0528 ; F1_score: 0.0658 ; loss: 0.0455
+2018-11-27 07:09:22,858:INFO: Batch: 400 : - Train metrics: accuracy: 0.1562 ; Hloss: 0.0424 ; precision: 0.2751 ; recall: 0.2110 ; F1_score: 0.2276 ; loss: 0.0367
+2018-11-27 07:10:45,407:INFO: Batch: 600 : - Train metrics: accuracy: 0.3125 ; Hloss: 0.0268 ; precision: 0.3842 ; recall: 0.2798 ; F1_score: 0.3097 ; loss: 0.0315
+2018-11-27 07:12:08,084:INFO: Batch: 800 : - Train metrics: accuracy: 0.3125 ; Hloss: 0.0379 ; precision: 0.4253 ; recall: 0.2296 ; F1_score: 0.2796 ; loss: 0.0309
+2018-11-27 07:12:58,214:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.1875 ; Hloss: 0.0739 ; precision: 0.2443 ; recall: 0.1901 ; F1_score: 0.1898 ; loss: 0.0871
+2018-11-27 07:12:58,214:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.2609 ; Hloss: 0.0408 ; precision: 0.5254 ; recall: 0.1865 ; F1_score: 0.2586 ; loss: 0.0413
+2018-11-27 07:12:58,215:INFO: Time taken for this epoch = 381.32682824134827
+2018-11-27 07:12:58,215:INFO: Epoch 2/20 , threshold: 0.3
+2018-11-27 07:12:59,068:INFO: Batch: 0 : - Train metrics: accuracy: 0.4062 ; Hloss: 0.0312 ; precision: 0.3065 ; recall: 0.2337 ; F1_score: 0.2573 ; loss: 0.0263
+2018-11-27 07:14:21,703:INFO: Batch: 200 : - Train metrics: accuracy: 0.2188 ; Hloss: 0.0547 ; precision: 0.2374 ; recall: 0.1508 ; F1_score: 0.1800 ; loss: 0.0421
+2018-11-27 07:15:44,426:INFO: Batch: 400 : - Train metrics: accuracy: 0.4062 ; Hloss: 0.0301 ; precision: 0.3690 ; recall: 0.2914 ; F1_score: 0.3194 ; loss: 0.0290
+2018-11-27 07:17:07,170:INFO: Batch: 600 : - Train metrics: accuracy: 0.4375 ; Hloss: 0.0312 ; precision: 0.3806 ; recall: 0.2794 ; F1_score: 0.3088 ; loss: 0.0277
+2018-11-27 07:18:30,354:INFO: Batch: 800 : - Train metrics: accuracy: 0.4688 ; Hloss: 0.0268 ; precision: 0.3393 ; recall: 0.2847 ; F1_score: 0.3034 ; loss: 0.0250
+2018-11-27 07:19:20,893:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.3875 ; Hloss: 0.0348 ; precision: 0.3266 ; recall: 0.2480 ; F1_score: 0.2738 ; loss: 0.0300
+2018-11-27 07:19:20,893:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.3992 ; Hloss: 0.0323 ; precision: 0.6820 ; recall: 0.3215 ; F1_score: 0.4091 ; loss: 0.0277
+2018-11-27 07:19:20,894:INFO: Time taken for this epoch = 382.67862248420715
+2018-11-27 07:19:20,894:INFO: Epoch 3/20 , threshold: 0.3
+2018-11-27 07:19:21,761:INFO: Batch: 0 : - Train metrics: accuracy: 0.4062 ; Hloss: 0.0290 ; precision: 0.3393 ; recall: 0.2539 ; F1_score: 0.2782 ; loss: 0.0206
+2018-11-27 07:20:44,999:INFO: Batch: 200 : - Train metrics: accuracy: 0.5000 ; Hloss: 0.0257 ; precision: 0.3450 ; recall: 0.2837 ; F1_score: 0.3053 ; loss: 0.0242
+2018-11-27 07:22:08,131:INFO: Batch: 400 : - Train metrics: accuracy: 0.5625 ; Hloss: 0.0234 ; precision: 0.3869 ; recall: 0.3621 ; F1_score: 0.3701 ; loss: 0.0198
+2018-11-27 07:23:30,478:INFO: Batch: 600 : - Train metrics: accuracy: 0.5312 ; Hloss: 0.0257 ; precision: 0.3857 ; recall: 0.2753 ; F1_score: 0.3018 ; loss: 0.0286
+2018-11-27 07:24:52,807:INFO: Batch: 800 : - Train metrics: accuracy: 0.5938 ; Hloss: 0.0190 ; precision: 0.4973 ; recall: 0.4366 ; F1_score: 0.4523 ; loss: 0.0168
+2018-11-27 07:25:42,826:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.5188 ; Hloss: 0.0246 ; precision: 0.3908 ; recall: 0.3223 ; F1_score: 0.3415 ; loss: 0.0220
+2018-11-27 07:25:42,826:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.4806 ; Hloss: 0.0267 ; precision: 0.7451 ; recall: 0.4123 ; F1_score: 0.5069 ; loss: 0.0224
+2018-11-27 15:31:45,801:INFO: json path : /home/ec2-user/CS230_Project/Code/models/Densenet169/params.json
+2018-11-27 15:31:45,801:INFO: Generating the dataloader
+2018-11-27 15:31:45,802:INFO: Done loading the Dataloader
+2018-11-27 15:31:45,831:INFO: using CUDA
+2018-11-27 15:31:45,831:INFO: Loading model and weights
+2018-11-27 15:31:46,692:INFO: Transferring model to GPU if CUDA available
+2018-11-27 15:31:50,016:INFO: Starting training for 20 epoch(s)
+2018-11-27 15:31:50,017:INFO: Epoch 1/20 , threshold: 0.3
+2018-11-27 15:31:50,948:INFO: Batch: 0 : - Train metrics: accuracy: 0.0312 ; Hloss: 0.2210 ; precision: 0.0619 ; recall: 0.1528 ; F1_score: 0.0713 ; loss: 0.2954
+2018-11-27 15:33:13,178:INFO: Batch: 200 : - Train metrics: accuracy: 0.1875 ; Hloss: 0.0446 ; precision: 0.1885 ; recall: 0.0967 ; F1_score: 0.1246 ; loss: 0.0418
+2018-11-27 15:34:35,286:INFO: Batch: 400 : - Train metrics: accuracy: 0.3125 ; Hloss: 0.0391 ; precision: 0.2468 ; recall: 0.1901 ; F1_score: 0.2088 ; loss: 0.0405
+2018-11-27 15:35:57,421:INFO: Batch: 600 : - Train metrics: accuracy: 0.3438 ; Hloss: 0.0357 ; precision: 0.3301 ; recall: 0.2452 ; F1_score: 0.2643 ; loss: 0.0330
+2018-11-27 15:37:19,555:INFO: Batch: 800 : - Train metrics: accuracy: 0.4375 ; Hloss: 0.0312 ; precision: 0.3777 ; recall: 0.2262 ; F1_score: 0.2737 ; loss: 0.0270
+2018-11-27 15:38:09,478:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.2625 ; Hloss: 0.0743 ; precision: 0.2410 ; recall: 0.1822 ; F1_score: 0.1885 ; loss: 0.0875
+2018-11-27 15:38:09,479:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.2582 ; Hloss: 0.0409 ; precision: 0.5411 ; recall: 0.1877 ; F1_score: 0.2610 ; loss: 0.0415
+2018-11-27 15:38:09,480:INFO: Time taken for this epoch = 379.4630300998688
+2018-11-27 15:38:09,480:INFO: Epoch 2/20 , threshold: 0.3
+2018-11-27 15:38:10,334:INFO: Batch: 0 : - Train metrics: accuracy: 0.3750 ; Hloss: 0.0335 ; precision: 0.3929 ; recall: 0.2574 ; F1_score: 0.2952 ; loss: 0.0294
+2018-11-27 15:39:32,704:INFO: Batch: 200 : - Train metrics: accuracy: 0.4062 ; Hloss: 0.0290 ; precision: 0.3546 ; recall: 0.2582 ; F1_score: 0.2889 ; loss: 0.0266
+2018-11-27 15:40:55,099:INFO: Batch: 400 : - Train metrics: accuracy: 0.3750 ; Hloss: 0.0346 ; precision: 0.3304 ; recall: 0.1937 ; F1_score: 0.2311 ; loss: 0.0276
+2018-11-27 15:42:17,584:INFO: Batch: 600 : - Train metrics: accuracy: 0.2500 ; Hloss: 0.0379 ; precision: 0.2994 ; recall: 0.2019 ; F1_score: 0.2281 ; loss: 0.0302
+2018-11-27 15:43:40,072:INFO: Batch: 800 : - Train metrics: accuracy: 0.5312 ; Hloss: 0.0234 ; precision: 0.2738 ; recall: 0.2232 ; F1_score: 0.2401 ; loss: 0.0270
+2018-11-27 15:44:30,068:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.3875 ; Hloss: 0.0317 ; precision: 0.3302 ; recall: 0.2269 ; F1_score: 0.2567 ; loss: 0.0282
+2018-11-27 15:44:30,068:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.3960 ; Hloss: 0.0323 ; precision: 0.6834 ; recall: 0.3214 ; F1_score: 0.4087 ; loss: 0.0276
+2018-11-27 15:44:30,069:INFO: Time taken for this epoch = 380.5887887477875
+2018-11-27 15:44:30,069:INFO: Epoch 3/20 , threshold: 0.3
+2018-11-27 15:44:30,927:INFO: Batch: 0 : - Train metrics: accuracy: 0.5000 ; Hloss: 0.0246 ; precision: 0.4462 ; recall: 0.3461 ; F1_score: 0.3782 ; loss: 0.0220
+2018-11-27 15:45:53,203:INFO: Batch: 200 : - Train metrics: accuracy: 0.6562 ; Hloss: 0.0190 ; precision: 0.4182 ; recall: 0.3700 ; F1_score: 0.3842 ; loss: 0.0167
+2018-11-27 15:47:15,609:INFO: Batch: 400 : - Train metrics: accuracy: 0.1875 ; Hloss: 0.0435 ; precision: 0.3028 ; recall: 0.2200 ; F1_score: 0.2450 ; loss: 0.0341
+2018-11-27 15:48:38,542:INFO: Batch: 600 : - Train metrics: accuracy: 0.5625 ; Hloss: 0.0234 ; precision: 0.5000 ; recall: 0.4560 ; F1_score: 0.4645 ; loss: 0.0190
+2018-11-27 15:50:01,487:INFO: Batch: 800 : - Train metrics: accuracy: 0.4688 ; Hloss: 0.0268 ; precision: 0.4145 ; recall: 0.2948 ; F1_score: 0.3250 ; loss: 0.0210
+2018-11-27 15:50:51,797:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.4750 ; Hloss: 0.0275 ; precision: 0.4163 ; recall: 0.3374 ; F1_score: 0.3594 ; loss: 0.0226
+2018-11-27 15:50:51,797:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.4757 ; Hloss: 0.0268 ; precision: 0.7359 ; recall: 0.4162 ; F1_score: 0.5122 ; loss: 0.0224
+2018-11-27 15:50:52,191:INFO: Time taken for this epoch = 382.1215832233429
+2018-11-27 15:50:52,191:INFO: Epoch 4/20 , threshold: 0.3
+2018-11-27 15:50:53,090:INFO: Batch: 0 : - Train metrics: accuracy: 0.3750 ; Hloss: 0.0324 ; precision: 0.3917 ; recall: 0.3082 ; F1_score: 0.3333 ; loss: 0.0231
+2018-11-27 15:52:15,481:INFO: Batch: 200 : - Train metrics: accuracy: 0.5000 ; Hloss: 0.0201 ; precision: 0.4792 ; recall: 0.3881 ; F1_score: 0.4191 ; loss: 0.0163
+2018-11-27 15:53:37,865:INFO: Batch: 400 : - Train metrics: accuracy: 0.4062 ; Hloss: 0.0301 ; precision: 0.5153 ; recall: 0.4135 ; F1_score: 0.4428 ; loss: 0.0233
+2018-11-27 15:55:00,160:INFO: Batch: 600 : - Train metrics: accuracy: 0.5000 ; Hloss: 0.0212 ; precision: 0.3810 ; recall: 0.3298 ; F1_score: 0.3476 ; loss: 0.0164
+2018-11-27 15:56:22,443:INFO: Batch: 800 : - Train metrics: accuracy: 0.7188 ; Hloss: 0.0123 ; precision: 0.4558 ; recall: 0.4584 ; F1_score: 0.4496 ; loss: 0.0127
+2018-11-27 15:57:12,382:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.5000 ; Hloss: 0.0232 ; precision: 0.4446 ; recall: 0.3796 ; F1_score: 0.3985 ; loss: 0.0184
+2018-11-27 15:57:12,383:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.5755 ; Hloss: 0.0204 ; precision: 0.8466 ; recall: 0.5390 ; F1_score: 0.6353 ; loss: 0.0168
+2018-11-27 15:57:12,383:INFO: Time taken for this epoch = 380.19229555130005
+2018-11-27 15:57:12,383:INFO: Epoch 5/20 , threshold: 0.3
+2018-11-27 15:57:13,242:INFO: Batch: 0 : - Train metrics: accuracy: 0.5938 ; Hloss: 0.0190 ; precision: 0.5810 ; recall: 0.5153 ; F1_score: 0.5371 ; loss: 0.0124
+2018-11-27 15:58:35,361:INFO: Batch: 200 : - Train metrics: accuracy: 0.7500 ; Hloss: 0.0112 ; precision: 0.6001 ; recall: 0.5407 ; F1_score: 0.5612 ; loss: 0.0087
+2018-11-27 15:59:57,506:INFO: Batch: 400 : - Train metrics: accuracy: 0.6875 ; Hloss: 0.0112 ; precision: 0.3929 ; recall: 0.3595 ; F1_score: 0.3734 ; loss: 0.0082
+2018-11-27 16:01:19,638:INFO: Batch: 600 : - Train metrics: accuracy: 0.5625 ; Hloss: 0.0179 ; precision: 0.4821 ; recall: 0.3924 ; F1_score: 0.4250 ; loss: 0.0123
+2018-11-27 16:02:41,841:INFO: Batch: 800 : - Train metrics: accuracy: 0.5312 ; Hloss: 0.0212 ; precision: 0.5041 ; recall: 0.4844 ; F1_score: 0.4833 ; loss: 0.0160
+2018-11-27 16:03:31,747:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.6250 ; Hloss: 0.0161 ; precision: 0.5120 ; recall: 0.4585 ; F1_score: 0.4760 ; loss: 0.0115
+2018-11-27 16:03:31,748:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.6999 ; Hloss: 0.0134 ; precision: 0.8868 ; recall: 0.6837 ; F1_score: 0.7662 ; loss: 0.0109
+2018-11-27 16:03:31,749:INFO: Time taken for this epoch = 379.3654203414917
+2018-11-27 16:03:31,749:INFO: Epoch 6/20 , threshold: 0.3
+2018-11-27 16:03:32,606:INFO: Batch: 0 : - Train metrics: accuracy: 0.7812 ; Hloss: 0.0100 ; precision: 0.4231 ; recall: 0.3619 ; F1_score: 0.3827 ; loss: 0.0097
+2018-11-27 16:04:54,935:INFO: Batch: 200 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0022 ; precision: 0.4286 ; recall: 0.4145 ; F1_score: 0.4207 ; loss: 0.0033
+2018-11-27 16:06:17,248:INFO: Batch: 400 : - Train metrics: accuracy: 0.8125 ; Hloss: 0.0089 ; precision: 0.5357 ; recall: 0.4895 ; F1_score: 0.5076 ; loss: 0.0080
+2018-11-27 16:07:39,608:INFO: Batch: 600 : - Train metrics: accuracy: 0.6875 ; Hloss: 0.0123 ; precision: 0.4462 ; recall: 0.4235 ; F1_score: 0.4291 ; loss: 0.0098
+2018-11-27 16:09:02,307:INFO: Batch: 800 : - Train metrics: accuracy: 0.8125 ; Hloss: 0.0067 ; precision: 0.5485 ; recall: 0.5672 ; F1_score: 0.5545 ; loss: 0.0063
+2018-11-27 16:09:52,242:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.8125 ; Hloss: 0.0080 ; precision: 0.4764 ; recall: 0.4513 ; F1_score: 0.4589 ; loss: 0.0074
+2018-11-27 16:09:52,242:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.7941 ; Hloss: 0.0086 ; precision: 0.9008 ; recall: 0.7795 ; F1_score: 0.8344 ; loss: 0.0072
+2018-11-27 16:09:53,850:INFO: Time taken for this epoch = 382.10093116760254
+2018-11-27 16:09:53,850:INFO: Epoch 7/20 , threshold: 0.3
+2018-11-27 16:09:54,708:INFO: Batch: 0 : - Train metrics: accuracy: 0.8438 ; Hloss: 0.0067 ; precision: 0.5238 ; recall: 0.4976 ; F1_score: 0.5052 ; loss: 0.0049
+2018-11-27 16:11:17,074:INFO: Batch: 200 : - Train metrics: accuracy: 0.9062 ; Hloss: 0.0033 ; precision: 0.6429 ; recall: 0.6205 ; F1_score: 0.6286 ; loss: 0.0043
+2018-11-27 16:12:39,916:INFO: Batch: 400 : - Train metrics: accuracy: 0.8750 ; Hloss: 0.0056 ; precision: 0.5714 ; recall: 0.5405 ; F1_score: 0.5523 ; loss: 0.0047
+2018-11-27 16:14:02,670:INFO: Batch: 600 : - Train metrics: accuracy: 0.9375 ; Hloss: 0.0022 ; precision: 0.5238 ; recall: 0.5325 ; F1_score: 0.5269 ; loss: 0.0028
+2018-11-27 16:15:25,481:INFO: Batch: 800 : - Train metrics: accuracy: 0.8125 ; Hloss: 0.0067 ; precision: 0.5219 ; recall: 0.5068 ; F1_score: 0.5109 ; loss: 0.0093
+2018-11-27 16:16:15,753:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.8750 ; Hloss: 0.0049 ; precision: 0.5568 ; recall: 0.5396 ; F1_score: 0.5448 ; loss: 0.0052
+2018-11-27 16:16:15,753:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.8453 ; Hloss: 0.0062 ; precision: 0.9410 ; recall: 0.8379 ; F1_score: 0.8793 ; loss: 0.0052
+2018-11-27 16:16:15,754:INFO: Time taken for this epoch = 381.90373730659485
+2018-11-27 16:16:15,754:INFO: Epoch 8/20 , threshold: 0.3
+2018-11-27 16:16:16,622:INFO: Batch: 0 : - Train metrics: accuracy: 0.8750 ; Hloss: 0.0045 ; precision: 0.5714 ; recall: 0.5485 ; F1_score: 0.5585 ; loss: 0.0052
+2018-11-27 16:17:39,559:INFO: Batch: 200 : - Train metrics: accuracy: 0.8750 ; Hloss: 0.0045 ; precision: 0.5000 ; recall: 0.4818 ; F1_score: 0.4900 ; loss: 0.0036
+2018-11-27 16:19:02,453:INFO: Batch: 400 : - Train metrics: accuracy: 0.7812 ; Hloss: 0.0078 ; precision: 0.5536 ; recall: 0.5226 ; F1_score: 0.5286 ; loss: 0.0060
+2018-11-27 16:20:25,386:INFO: Batch: 600 : - Train metrics: accuracy: 0.8125 ; Hloss: 0.0078 ; precision: 0.4955 ; recall: 0.4789 ; F1_score: 0.4864 ; loss: 0.0036
+2018-11-27 16:21:47,907:INFO: Batch: 800 : - Train metrics: accuracy: 0.8125 ; Hloss: 0.0078 ; precision: 0.5321 ; recall: 0.5060 ; F1_score: 0.5148 ; loss: 0.0061
+2018-11-27 16:22:37,914:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.8313 ; Hloss: 0.0065 ; precision: 0.5305 ; recall: 0.5076 ; F1_score: 0.5157 ; loss: 0.0049
+2018-11-27 16:22:37,914:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.8795 ; Hloss: 0.0047 ; precision: 0.9424 ; recall: 0.8752 ; F1_score: 0.9062 ; loss: 0.0041
+2018-11-27 16:22:37,915:INFO: Time taken for this epoch = 382.1607418060303
+2018-11-27 16:22:37,915:INFO: Epoch 9/20 , threshold: 0.3
+2018-11-27 16:22:38,770:INFO: Batch: 0 : - Train metrics: accuracy: 0.7812 ; Hloss: 0.0078 ; precision: 0.5357 ; recall: 0.5157 ; F1_score: 0.5246 ; loss: 0.0059
+2018-11-27 16:24:00,981:INFO: Batch: 200 : - Train metrics: accuracy: 0.9062 ; Hloss: 0.0033 ; precision: 0.4974 ; recall: 0.4911 ; F1_score: 0.4936 ; loss: 0.0026
+2018-11-27 16:25:23,234:INFO: Batch: 400 : - Train metrics: accuracy: 0.8750 ; Hloss: 0.0056 ; precision: 0.4643 ; recall: 0.4303 ; F1_score: 0.4430 ; loss: 0.0037
+2018-11-27 16:26:45,466:INFO: Batch: 600 : - Train metrics: accuracy: 0.9375 ; Hloss: 0.0022 ; precision: 0.5357 ; recall: 0.5260 ; F1_score: 0.5304 ; loss: 0.0024
+2018-11-27 16:28:07,760:INFO: Batch: 800 : - Train metrics: accuracy: 0.9062 ; Hloss: 0.0056 ; precision: 0.5784 ; recall: 0.6071 ; F1_score: 0.5904 ; loss: 0.0039
+2018-11-27 16:28:57,686:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.8812 ; Hloss: 0.0049 ; precision: 0.5223 ; recall: 0.5141 ; F1_score: 0.5164 ; loss: 0.0037
+2018-11-27 16:28:57,686:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.8934 ; Hloss: 0.0042 ; precision: 0.9464 ; recall: 0.8918 ; F1_score: 0.9177 ; loss: 0.0036
+2018-11-27 16:28:59,294:INFO: Time taken for this epoch = 381.37890124320984
+2018-11-27 16:28:59,294:INFO: Epoch 10/20 , threshold: 0.3
+2018-11-27 16:29:00,155:INFO: Batch: 0 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.5000 ; recall: 0.5000 ; F1_score: 0.5000 ; loss: 0.0012
+2018-11-27 16:30:22,586:INFO: Batch: 200 : - Train metrics: accuracy: 0.9375 ; Hloss: 0.0022 ; precision: 0.5325 ; recall: 0.5286 ; F1_score: 0.5300 ; loss: 0.0023
+2018-11-27 16:31:44,922:INFO: Batch: 400 : - Train metrics: accuracy: 0.9375 ; Hloss: 0.0022 ; precision: 0.5325 ; recall: 0.5179 ; F1_score: 0.5221 ; loss: 0.0021
+2018-11-27 16:33:07,225:INFO: Batch: 600 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.5000 ; recall: 0.4821 ; F1_score: 0.4881 ; loss: 0.0021
+2018-11-27 16:34:29,652:INFO: Batch: 800 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.6786 ; recall: 0.6750 ; F1_score: 0.6767 ; loss: 0.0016
+2018-11-27 16:35:19,646:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.9563 ; Hloss: 0.0016 ; precision: 0.5487 ; recall: 0.5407 ; F1_score: 0.5434 ; loss: 0.0019
+2018-11-27 16:35:19,646:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.9025 ; Hloss: 0.0038 ; precision: 0.9482 ; recall: 0.9080 ; F1_score: 0.9276 ; loss: 0.0032
+2018-11-27 16:35:19,647:INFO: Time taken for this epoch = 380.35226702690125
+2018-11-27 16:35:19,647:INFO: Epoch 11/20 , threshold: 0.3
+2018-11-27 16:35:20,499:INFO: Batch: 0 : - Train metrics: accuracy: 0.8750 ; Hloss: 0.0045 ; precision: 0.5325 ; recall: 0.5125 ; F1_score: 0.5200 ; loss: 0.0028
+2018-11-27 16:36:42,779:INFO: Batch: 200 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.5714 ; recall: 0.5663 ; F1_score: 0.5687 ; loss: 0.0022
+2018-11-27 16:38:04,955:INFO: Batch: 400 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.4643 ; recall: 0.4583 ; F1_score: 0.4610 ; loss: 0.0023
+2018-11-27 16:39:27,200:INFO: Batch: 600 : - Train metrics: accuracy: 0.7812 ; Hloss: 0.0078 ; precision: 0.6039 ; recall: 0.5714 ; F1_score: 0.5833 ; loss: 0.0044
+2018-11-27 16:40:49,418:INFO: Batch: 800 : - Train metrics: accuracy: 0.8125 ; Hloss: 0.0078 ; precision: 0.5736 ; recall: 0.5929 ; F1_score: 0.5783 ; loss: 0.0075
+2018-11-27 16:41:39,341:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.8812 ; Hloss: 0.0045 ; precision: 0.5491 ; recall: 0.5403 ; F1_score: 0.5423 ; loss: 0.0038
+2018-11-27 16:41:39,341:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.9090 ; Hloss: 0.0035 ; precision: 0.9802 ; recall: 0.9181 ; F1_score: 0.9393 ; loss: 0.0030
+2018-11-27 16:41:39,342:INFO: Time taken for this epoch = 379.69560956954956
+2018-11-27 16:41:39,343:INFO: Epoch 12/20 , threshold: 0.3
+2018-11-27 16:41:40,192:INFO: Batch: 0 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.6071 ; recall: 0.5893 ; F1_score: 0.5952 ; loss: 0.0015
+2018-11-27 16:43:02,520:INFO: Batch: 200 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.5893 ; recall: 0.6071 ; F1_score: 0.5952 ; loss: 0.0013
+2018-11-27 16:44:24,844:INFO: Batch: 400 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.4603 ; recall: 0.4643 ; F1_score: 0.4622 ; loss: 0.0015
+2018-11-27 16:45:47,136:INFO: Batch: 600 : - Train metrics: accuracy: 0.9375 ; Hloss: 0.0022 ; precision: 0.5714 ; recall: 0.5639 ; F1_score: 0.5674 ; loss: 0.0018
+2018-11-27 16:47:09,462:INFO: Batch: 800 : - Train metrics: accuracy: 0.8438 ; Hloss: 0.0056 ; precision: 0.5952 ; recall: 0.5819 ; F1_score: 0.5860 ; loss: 0.0026
+2018-11-27 16:47:59,419:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.9375 ; Hloss: 0.0022 ; precision: 0.5647 ; recall: 0.5613 ; F1_score: 0.5612 ; loss: 0.0017
+2018-11-27 16:47:59,419:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.9158 ; Hloss: 0.0033 ; precision: 0.9532 ; recall: 0.9065 ; F1_score: 0.9287 ; loss: 0.0027
+2018-11-27 16:48:01,030:INFO: Time taken for this epoch = 381.6873037815094
+2018-11-27 16:48:01,030:INFO: Epoch 13/20 , threshold: 0.3
+2018-11-27 16:48:01,910:INFO: Batch: 0 : - Train metrics: accuracy: 0.9375 ; Hloss: 0.0022 ; precision: 0.4978 ; recall: 0.4940 ; F1_score: 0.4956 ; loss: 0.0028
+2018-11-27 16:49:24,263:INFO: Batch: 200 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0022 ; precision: 0.5357 ; recall: 0.5146 ; F1_score: 0.5221 ; loss: 0.0024
+2018-11-27 16:50:46,718:INFO: Batch: 400 : - Train metrics: accuracy: 0.9375 ; Hloss: 0.0022 ; precision: 0.4643 ; recall: 0.4554 ; F1_score: 0.4592 ; loss: 0.0021
+2018-11-27 16:52:09,103:INFO: Batch: 600 : - Train metrics: accuracy: 0.7812 ; Hloss: 0.0078 ; precision: 0.4889 ; recall: 0.4728 ; F1_score: 0.4786 ; loss: 0.0083
+2018-11-27 16:53:31,523:INFO: Batch: 800 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.5357 ; recall: 0.5298 ; F1_score: 0.5325 ; loss: 0.0017
+2018-11-27 16:54:21,606:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.9187 ; Hloss: 0.0031 ; precision: 0.5045 ; recall: 0.4933 ; F1_score: 0.4976 ; loss: 0.0034
+2018-11-27 16:54:21,606:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.9244 ; Hloss: 0.0029 ; precision: 0.9792 ; recall: 0.9329 ; F1_score: 0.9512 ; loss: 0.0025
+2018-11-27 16:54:21,607:INFO: Time taken for this epoch = 380.5763957500458
+2018-11-27 16:54:21,607:INFO: Epoch 14/20 , threshold: 0.3
+2018-11-27 16:54:22,464:INFO: Batch: 0 : - Train metrics: accuracy: 0.9375 ; Hloss: 0.0022 ; precision: 0.6357 ; recall: 0.6429 ; F1_score: 0.6389 ; loss: 0.0021
+2018-11-27 16:55:44,767:INFO: Batch: 200 : - Train metrics: accuracy: 0.8750 ; Hloss: 0.0045 ; precision: 0.5685 ; recall: 0.5306 ; F1_score: 0.5433 ; loss: 0.0026
+2018-11-27 16:57:07,115:INFO: Batch: 400 : - Train metrics: accuracy: 0.9062 ; Hloss: 0.0033 ; precision: 0.5179 ; recall: 0.5277 ; F1_score: 0.5195 ; loss: 0.0024
+2018-11-27 16:58:29,438:INFO: Batch: 600 : - Train metrics: accuracy: 0.9062 ; Hloss: 0.0033 ; precision: 0.6726 ; recall: 0.6714 ; F1_score: 0.6714 ; loss: 0.0038
+2018-11-27 16:59:51,878:INFO: Batch: 800 : - Train metrics: accuracy: 0.8125 ; Hloss: 0.0089 ; precision: 0.3446 ; recall: 0.3429 ; F1_score: 0.3412 ; loss: 0.0074
+2018-11-27 17:00:41,968:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.8875 ; Hloss: 0.0045 ; precision: 0.5479 ; recall: 0.5431 ; F1_score: 0.5429 ; loss: 0.0037
+2018-11-27 17:00:41,969:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.9321 ; Hloss: 0.0026 ; precision: 0.9902 ; recall: 0.9710 ; F1_score: 0.9805 ; loss: 0.0022
+2018-11-27 17:00:41,970:INFO: Time taken for this epoch = 380.36292457580566
+2018-11-27 17:00:41,970:INFO: Epoch 15/20 , threshold: 0.3
+2018-11-27 17:00:42,861:INFO: Batch: 0 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.6032 ; recall: 0.6071 ; F1_score: 0.6050 ; loss: 0.0014
+2018-11-27 17:02:05,309:INFO: Batch: 200 : - Train metrics: accuracy: 1.0000 ; Hloss: 0.0000 ; precision: 0.4643 ; recall: 0.4643 ; F1_score: 0.4643 ; loss: 0.0010
+2018-11-27 17:03:27,850:INFO: Batch: 400 : - Train metrics: accuracy: 0.9375 ; Hloss: 0.0033 ; precision: 0.5714 ; recall: 0.5476 ; F1_score: 0.5571 ; loss: 0.0020
+2018-11-27 17:04:50,255:INFO: Batch: 600 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.5357 ; recall: 0.5306 ; F1_score: 0.5330 ; loss: 0.0017
+2018-11-27 17:06:12,598:INFO: Batch: 800 : - Train metrics: accuracy: 0.9375 ; Hloss: 0.0022 ; precision: 0.5625 ; recall: 0.5536 ; F1_score: 0.5544 ; loss: 0.0014
+2018-11-27 17:07:02,603:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.9625 ; Hloss: 0.0016 ; precision: 0.5474 ; recall: 0.5406 ; F1_score: 0.5428 ; loss: 0.0015
+2018-11-27 17:07:02,603:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.9270 ; Hloss: 0.0028 ; precision: 0.9818 ; recall: 0.9521 ; F1_score: 0.9664 ; loss: 0.0023
+2018-11-27 17:07:04,187:INFO: Time taken for this epoch = 382.217467546463
+2018-11-27 17:07:04,188:INFO: Epoch 16/20 , threshold: 0.3
+2018-11-27 17:07:05,046:INFO: Batch: 0 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.5332 ; recall: 0.5357 ; F1_score: 0.5344 ; loss: 0.0022
+2018-11-27 17:08:27,840:INFO: Batch: 200 : - Train metrics: accuracy: 0.9375 ; Hloss: 0.0022 ; precision: 0.5714 ; recall: 0.5595 ; F1_score: 0.5648 ; loss: 0.0015
+2018-11-27 17:09:50,811:INFO: Batch: 400 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.5357 ; recall: 0.5238 ; F1_score: 0.5286 ; loss: 0.0016
+2018-11-27 17:11:13,358:INFO: Batch: 600 : - Train metrics: accuracy: 0.9062 ; Hloss: 0.0045 ; precision: 0.5536 ; recall: 0.5500 ; F1_score: 0.5466 ; loss: 0.0028
+2018-11-27 17:12:35,809:INFO: Batch: 800 : - Train metrics: accuracy: 1.0000 ; Hloss: 0.0000 ; precision: 0.4643 ; recall: 0.4643 ; F1_score: 0.4643 ; loss: 0.0011
+2018-11-27 17:13:25,840:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.9563 ; Hloss: 0.0018 ; precision: 0.5316 ; recall: 0.5267 ; F1_score: 0.5277 ; loss: 0.0019
+2018-11-27 17:13:25,840:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.9411 ; Hloss: 0.0022 ; precision: 0.9896 ; recall: 0.9643 ; F1_score: 0.9764 ; loss: 0.0019
+2018-11-27 17:13:25,841:INFO: Time taken for this epoch = 381.65318059921265
+2018-11-27 17:13:25,841:INFO: Epoch 17/20 , threshold: 0.3
+2018-11-27 17:13:26,688:INFO: Batch: 0 : - Train metrics: accuracy: 0.8750 ; Hloss: 0.0045 ; precision: 0.5833 ; recall: 0.6071 ; F1_score: 0.5893 ; loss: 0.0027
+2018-11-27 17:14:49,112:INFO: Batch: 200 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.4643 ; recall: 0.4554 ; F1_score: 0.4592 ; loss: 0.0008
+2018-11-27 17:16:11,444:INFO: Batch: 400 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.6071 ; recall: 0.6020 ; F1_score: 0.6044 ; loss: 0.0012
+2018-11-27 17:17:33,791:INFO: Batch: 600 : - Train metrics: accuracy: 0.9062 ; Hloss: 0.0033 ; precision: 0.5317 ; recall: 0.5198 ; F1_score: 0.5246 ; loss: 0.0031
+2018-11-27 17:18:56,104:INFO: Batch: 800 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.6339 ; recall: 0.6429 ; F1_score: 0.6378 ; loss: 0.0013
+2018-11-27 17:19:46,119:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.9375 ; Hloss: 0.0022 ; precision: 0.5641 ; recall: 0.5654 ; F1_score: 0.5630 ; loss: 0.0018
+2018-11-27 17:19:46,119:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.9366 ; Hloss: 0.0024 ; precision: 0.9887 ; recall: 0.9682 ; F1_score: 0.9783 ; loss: 0.0020
+2018-11-27 17:19:46,120:INFO: Time taken for this epoch = 380.27898836135864
+2018-11-27 17:19:46,120:INFO: Epoch 18/20 , threshold: 0.3
+2018-11-27 17:19:47,015:INFO: Batch: 0 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.6071 ; recall: 0.6000 ; F1_score: 0.6032 ; loss: 0.0008
+2018-11-27 17:21:09,598:INFO: Batch: 200 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.4949 ; recall: 0.5000 ; F1_score: 0.4973 ; loss: 0.0013
+2018-11-27 17:22:32,506:INFO: Batch: 400 : - Train metrics: accuracy: 1.0000 ; Hloss: 0.0000 ; precision: 0.6071 ; recall: 0.6071 ; F1_score: 0.6071 ; loss: 0.0010
+2018-11-27 17:23:55,544:INFO: Batch: 600 : - Train metrics: accuracy: 0.9375 ; Hloss: 0.0022 ; precision: 0.5357 ; recall: 0.5060 ; F1_score: 0.5167 ; loss: 0.0022
+2018-11-27 17:25:18,036:INFO: Batch: 800 : - Train metrics: accuracy: 0.9375 ; Hloss: 0.0022 ; precision: 0.6741 ; recall: 0.6741 ; F1_score: 0.6741 ; loss: 0.0013
+2018-11-27 17:26:08,062:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.9625 ; Hloss: 0.0013 ; precision: 0.5838 ; recall: 0.5774 ; F1_score: 0.5797 ; loss: 0.0013
+2018-11-27 17:26:08,062:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.9374 ; Hloss: 0.0024 ; precision: 0.9881 ; recall: 0.9549 ; F1_score: 0.9695 ; loss: 0.0020
+2018-11-27 17:26:09,658:INFO: Time taken for this epoch = 383.5379328727722
+2018-11-27 17:26:09,659:INFO: Epoch 19/20 , threshold: 0.3
+2018-11-27 17:26:10,523:INFO: Batch: 0 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.5000 ; recall: 0.4978 ; F1_score: 0.4988 ; loss: 0.0021
+2018-11-27 17:27:32,794:INFO: Batch: 200 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.6071 ; recall: 0.5893 ; F1_score: 0.5952 ; loss: 0.0015
+2018-11-27 17:28:54,971:INFO: Batch: 400 : - Train metrics: accuracy: 0.9062 ; Hloss: 0.0033 ; precision: 0.4107 ; recall: 0.4175 ; F1_score: 0.4107 ; loss: 0.0022
+2018-11-27 17:30:17,211:INFO: Batch: 600 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.6071 ; recall: 0.5893 ; F1_score: 0.5952 ; loss: 0.0018
+2018-11-27 17:31:39,464:INFO: Batch: 800 : - Train metrics: accuracy: 0.9688 ; Hloss: 0.0011 ; precision: 0.4643 ; recall: 0.4643 ; F1_score: 0.4643 ; loss: 0.0020
+2018-11-27 17:32:29,399:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.9563 ; Hloss: 0.0016 ; precision: 0.5179 ; recall: 0.5116 ; F1_score: 0.5129 ; loss: 0.0019
+2018-11-27 17:32:29,399:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.9440 ; Hloss: 0.0021 ; precision: 0.9901 ; recall: 0.9712 ; F1_score: 0.9805 ; loss: 0.0018
+2018-11-27 17:32:29,401:INFO: Time taken for this epoch = 379.7420117855072
+2018-11-27 17:32:29,401:INFO: Epoch 20/20 , threshold: 0.3
+2018-11-27 17:32:30,271:INFO: Batch: 0 : - Train metrics: accuracy: 0.9375 ; Hloss: 0.0022 ; precision: 0.4643 ; recall: 0.4554 ; F1_score: 0.4592 ; loss: 0.0012
+2018-11-27 17:33:52,529:INFO: Batch: 200 : - Train metrics: accuracy: 0.9062 ; Hloss: 0.0045 ; precision: 0.4538 ; recall: 0.4554 ; F1_score: 0.4535 ; loss: 0.0038
+2018-11-27 17:35:15,081:INFO: Batch: 400 : - Train metrics: accuracy: 0.9375 ; Hloss: 0.0033 ; precision: 0.5179 ; recall: 0.5286 ; F1_score: 0.5198 ; loss: 0.0027
+2018-11-27 17:36:37,591:INFO: Batch: 600 : - Train metrics: accuracy: 0.9375 ; Hloss: 0.0022 ; precision: 0.5357 ; recall: 0.5282 ; F1_score: 0.5317 ; loss: 0.0017
+2018-11-27 17:38:00,123:INFO: Batch: 800 : - Train metrics: accuracy: 1.0000 ; Hloss: 0.0000 ; precision: 0.5000 ; recall: 0.5000 ; F1_score: 0.5000 ; loss: 0.0009
+2018-11-27 17:38:50,200:INFO: Batch: 921 : - Train set average metrics: accuracy: 0.9437 ; Hloss: 0.0025 ; precision: 0.4943 ; recall: 0.4935 ; F1_score: 0.4929 ; loss: 0.0021
+2018-11-27 17:38:50,200:INFO: Batch: 921 : - metrics for Entire train dataset: accuracy: 0.9397 ; Hloss: 0.0023 ; precision: 0.9885 ; recall: 0.9728 ; F1_score: 0.9806 ; loss: 0.0020
+2018-11-27 17:38:50,201:INFO: Time taken for this epoch = 380.800537109375
